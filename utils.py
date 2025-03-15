@@ -25,14 +25,14 @@ def compute_right_eye(left_img, depth_map, fov=60, shift=0.063):
     return right_img
 
 # start with a really idealistic prosthetic with tons of electrodes
-def get_big_prosthesis():
+def get_big_prosthesis(eye):
     earray = p2p.implants.ElectrodeArray([])
     e_count = 0
     for i in range(-3000, 3000, 100):
         for j in range(-3000, 3000, 100):
             earray.add_electrode(e_count, p2p.implants.DiskElectrode(i, j, z=0, r=25))
             e_count += 1
-    return p2p.implants.ProsthesisSystem(earray)
+    return p2p.implants.ProsthesisSystem(earray, eye=eye)
 
 def get_percept_data_from_image(image, model, prosthesis):
     prosthesis.stim = p2p.stimuli.ImageStimulus(image)
