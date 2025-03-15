@@ -34,8 +34,14 @@ def get_big_prosthesis(eye):
             e_count += 1
     return p2p.implants.ProsthesisSystem(earray, eye=eye)
 
-def get_percept_data_from_image(image, model, prosthesis):
-    prosthesis.stim = p2p.stimuli.ImageStimulus(image)
+def get_percept_data_from_image(stim, model, prosthesis):
+    # if the stim is a list, it's an array that controls whether
+    # each electrode is on or off (raw stim). otherwise it's an image and
+    # should be conveted to an ImageStimulus before assigning
+    if type(stim) == list:
+        prosthesis.stim = stim
+    else:
+        prosthesis.stim = p2p.stimuli.ImageStimulus(stim)
     percept = model.predict_percept(prosthesis)
     return percept.data
 
