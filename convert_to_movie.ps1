@@ -10,5 +10,5 @@ Get-ChildItem -Filter output\png\*.png | ForEach-Object {
     $outputFile = "output\mp4\$($_.BaseName).mp4"
 
     # Run ffmpeg command
-    & $ffmpegPath -loop 1 -i $inputFile -t $duration -vf "format=yuv420p" $outputFile
+    & $ffmpegPath -n -loop 1 -i $inputFile -t $duration -vf "format=yuv420p" $outputFile
 }

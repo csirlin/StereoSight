@@ -3,7 +3,7 @@
 import cv2
 import glob
 
-pngs = glob.glob("output/*.png")
+pngs = glob.glob("output/png/*.png")
 for png in pngs:
     im = cv2.imread(png)
     if im.shape[0] % 2 != 0:
